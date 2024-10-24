@@ -1,15 +1,12 @@
 package com.readify.controller;
 
-import com.readify.model.Customer;
-import com.readify.model.CustomerBooks;
-import com.readify.service.BillingService;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,9 +14,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.readify.model.Book;
+import com.readify.model.Customer;
+import com.readify.model.CustomerBooks;
+import com.readify.service.BillingService;
+
 @Controller
-@RequestMapping(value = {"/orders"})
+@RequestMapping("/orders")
 public class OrderController {
+
   private BillingService billingService;
 
   public OrderController(BillingService billingService) {
@@ -27,30 +30,27 @@ public class OrderController {
   }
 
   @GetMapping(value = {"", "/"})
-  public String getAllOrders(
-      Model model,
-      @RequestParam(value = "page") Optional<Integer> page,
-      @RequestParam(value = "size") Optional<Integer> size) {
-    return this.page(null, model, page, size);
+  public String getAllOrders(Model model, @RequestParam("page") Optional<Integer> page,
+                             @RequestParam("size") Optional<Integer> size) {
+
+    return page(null, model, page, size);
   }
 
-  @GetMapping(value = {"/search"})
-  public String searchOrders(
-      @RequestParam(value = "term") String term,
-      Model model,
-      @RequestParam(value = "page") Optional<Integer> page,
-      @RequestParam(value = "size") Optional<Integer> size) {
+  @GetMapping("/search")
+  public String searchOrders(@RequestParam("term") String term, Model model,
+                             @RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size) {
     if (term.isBlank()) {
       return "redirect:/orders";
     }
-    return this.page(term, model, page, size);
+    return page(term, model, page, size);
   }
 
-  @GetMapping(value = {"/{id}"})
-  public String showSpecificOrder(@PathVariable(value = "id") Long id, Model model) {
-    List customerBooks = this.billingService.findOrdersByCustomerId(id);
+  @GetMapping("/{id}")
+  public String showSpecificOrder(@PathVariable("id") Long id, Model model) {
+    List<CustomerBooks> customerBooks = billingService.findOrdersByCustomerId(id);
+
     Customer customer = null;
-    List books = null;
+    List<Book> books = null;
     for (CustomerBooks c : customerBooks) {
       customer = c.getCustomer();
       books = c.getBooks();
@@ -60,23 +60,23 @@ public class OrderController {
     return "order";
   }
 
-  private String page(
-      @RequestParam(value = "term") String term,
-      Model model,
-      @RequestParam(value = "page") Optional<Integer> page,
-      @RequestParam(value = "size") Optional<Integer> size) {
+  private String page(@RequestParam("term") String term, Model model, @RequestParam("page") Optional<Integer> page,
+                      @RequestParam("size") Optional<Integer> size) {
     int currentPage = page.orElse(1);
     int pageSize = size.orElse(10);
-    Page orderPage =
-        term == null
-            ? this.billingService.findPaginated(
-                (Pageable) PageRequest.of((int) (currentPage - 1), (int) pageSize), null)
-            : this.billingService.findPaginated(
-                (Pageable) PageRequest.of((int) (currentPage - 1), (int) pageSize), term);
-    model.addAttribute("orderPage", (Object) orderPage);
+
+    Page<CustomerBooks> orderPage;
+
+    if (term == null) {
+      orderPage = billingService.findPaginated(PageRequest.of(currentPage - 1, pageSize), null);
+    } else {
+      orderPage = billingService.findPaginated(PageRequest.of(currentPage - 1, pageSize), term);
+    }
+    model.addAttribute("orderPage", orderPage);
+
     int totalPages = orderPage.getTotalPages();
     if (totalPages > 0) {
-      List pageNumbers = IntStream.rangeClosed(1, totalPages).boxed().collect(Collectors.toList());
+      List<Integer> pageNumbers = IntStream.rangeClosed(1, totalPages).boxed().collect(Collectors.toList());
       model.addAttribute("pageNumbers", pageNumbers);
     }
     return "orders";
