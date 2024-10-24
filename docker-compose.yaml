@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  readify:
+    image: abrar2030/readify:latest
+    container_name: readify-container
+    ports:
+      - "8080:8080"
+    networks:
+      - readify-network
+    restart: always
+
+networks:
+  readify-network:
+    driver: bridge
