@@ -12,64 +12,73 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="orders")
+@Table(name = "orders")
 public class Order {
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long id;
-    @Column(name="order_date", nullable=false)
-    private LocalDate orderDate;
-    @ManyToOne(cascade={CascadeType.MERGE})
-    @JoinColumn(name="customer_id")
-    private Customer customer;
-    @ManyToOne(cascade={CascadeType.MERGE})
-    @JoinColumn(name="book_id")
-    private Book book;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    public Order() {
-    }
+  @Column(name = "order_date", nullable = false)
+  private LocalDate orderDate;
 
-    public Order(Long id, LocalDate orderDate, Customer customer, Book book) {
-        this.id = id;
-        this.orderDate = orderDate;
-        this.customer = customer;
-        this.book = book;
-    }
+  @ManyToOne(cascade = {CascadeType.MERGE})
+  @JoinColumn(name = "customer_id")
+  private Customer customer;
 
-    public Long getId() {
-        return this.id;
-    }
+  @ManyToOne(cascade = {CascadeType.MERGE})
+  @JoinColumn(name = "book_id")
+  private Book book;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+  public Order() {}
 
-    public LocalDate getOrderDate() {
-        return this.orderDate;
-    }
+  public Order(Long id, LocalDate orderDate, Customer customer, Book book) {
+    this.id = id;
+    this.orderDate = orderDate;
+    this.customer = customer;
+    this.book = book;
+  }
 
-    public void setOrderDate(LocalDate orderDate) {
-        this.orderDate = orderDate;
-    }
+  public Long getId() {
+    return this.id;
+  }
 
-    public Customer getCustomer() {
-        return this.customer;
-    }
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
+  public LocalDate getOrderDate() {
+    return this.orderDate;
+  }
 
-    public Book getBook() {
-        return this.book;
-    }
+  public void setOrderDate(LocalDate orderDate) {
+    this.orderDate = orderDate;
+  }
 
-    public void setBook(Book book) {
-        this.book = book;
-    }
+  public Customer getCustomer() {
+    return this.customer;
+  }
 
-    public String toString() {
-        return "Order [id=" + this.id + ", orderDate=" + this.orderDate + ", customer=" + this.customer + ", book=" + this.book + "]";
-    }
+  public void setCustomer(Customer customer) {
+    this.customer = customer;
+  }
+
+  public Book getBook() {
+    return this.book;
+  }
+
+  public void setBook(Book book) {
+    this.book = book;
+  }
+
+  public String toString() {
+    return "Order [id="
+        + this.id
+        + ", orderDate="
+        + this.orderDate
+        + ", customer="
+        + this.customer
+        + ", book="
+        + this.book
+        + "]";
+  }
 }
-

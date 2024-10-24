@@ -8,9 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface BookRepository
-extends CrudRepository<Book, Long> {
-    @Query(value="SELECT * FROM books WHERE name LIKE %:term%", nativeQuery=true)
-    public List<Book> findByNameContaining(@Param(value="term") String var1);
+public interface BookRepository extends CrudRepository<Book, Long> {
+  @Query(value = "SELECT * FROM books WHERE name LIKE %:term%", nativeQuery = true)
+  public List<Book> findByNameContaining(@Param(value = "term") String var1);
 }
-
