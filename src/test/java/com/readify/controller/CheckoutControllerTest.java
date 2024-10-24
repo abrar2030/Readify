@@ -1,4 +1,4 @@
-package com.readify.Controller;
+package com.readify.controller;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.doNothing;
@@ -7,7 +7,6 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import com.readify.controller.CheckoutController;
 import com.readify.model.Book;
 import com.readify.model.Customer;
 import com.readify.service.BillingService;

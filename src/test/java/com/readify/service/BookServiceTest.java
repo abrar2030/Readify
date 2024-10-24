@@ -1,4 +1,4 @@
-package com.readify.Service;
+package com.readify.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;

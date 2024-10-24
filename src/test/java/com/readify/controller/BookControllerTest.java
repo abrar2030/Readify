@@ -1,4 +1,4 @@
-package com.readify.Controller;
+package com.readify.controller;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
@@ -6,7 +6,6 @@ import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import com.readify.controller.BookController;
 import com.readify.model.Book;
 import com.readify.service.BookService;
 import java.util.Arrays;

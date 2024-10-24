@@ -1,4 +1,4 @@
-package com.readify.Controller;
+package com.readify.controller;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

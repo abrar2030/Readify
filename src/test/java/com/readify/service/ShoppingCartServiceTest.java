@@ -1,10 +1,9 @@
-package com.readify.Service;
+package com.readify.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-import com.readify.service.ShoppingCartService;
 import com.readify.model.Book;
 import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;

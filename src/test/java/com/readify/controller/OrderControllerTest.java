@@ -1,10 +1,9 @@
-package com.readify.Controller;
+package com.readify.controller;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-import com.readify.controller.OrderController;
 import com.readify.model.Book;
 import com.readify.model.Customer;
 import com.readify.model.CustomerBooks;
