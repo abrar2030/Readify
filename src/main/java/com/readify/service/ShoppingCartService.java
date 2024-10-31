@@ -1,13 +1,10 @@
 package com.readify.service;
 
+import com.readify.model.Book;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.servlet.http.HttpSession;
-
-import com.readify.model.Book;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +13,7 @@ public class ShoppingCartService {
 
   @Value("${shipping.costs}")
   private String shippingCosts;
+
   private HttpSession session;
 
   public ShoppingCartService(HttpSession session) {
@@ -62,5 +60,4 @@ public class ShoppingCartService {
   public HttpSession getSession() {
     return session;
   }
-
 }

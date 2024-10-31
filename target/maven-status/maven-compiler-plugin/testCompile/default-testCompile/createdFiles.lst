@@ -1,0 +1,7 @@
+com/readify/service/BookServiceTest.class
+com/readify/controller/BookControllerTest.class
+com/readify/service/ShoppingCartServiceTest.class
+com/readify/controller/HomeControllerTest.class
+com/readify/controller/OrderControllerTest.class
+com/readify/controller/LoginControllerTest.class
+com/readify/controller/CheckoutControllerTest.class

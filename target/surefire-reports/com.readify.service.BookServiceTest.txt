@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.readify.service.BookServiceTest
+-------------------------------------------------------------------------------
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.07 s - in com.readify.service.BookServiceTest
