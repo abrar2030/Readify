@@ -1,5 +1,5 @@
+---
 version: '3.8'
-
 services:
   readify:
     image: abrar2030/readify:latest
@@ -9,7 +9,6 @@ services:
     networks:
       - readify-network
     restart: always
-
 networks:
   readify-network:
     driver: bridge
