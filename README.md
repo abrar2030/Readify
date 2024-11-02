@@ -390,10 +390,10 @@ The project includes several shell scripts to automate common tasks:
   ./lint-all.sh
   ```
 
-- **manage.sh**: A utility script for various management tasks. Usage instructions can be added within the script or documented here.
+- **manage.sh**: A utility script for various management tasks.
 
   ```bash
-  ./manage.sh [options]
+  ./manage.sh build
   ```
 
 *Ensure scripts have execute permissions. If not, make them executable:*
